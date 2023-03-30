@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+    目标提取
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/target_extraction_result.css') }}">
+{% endblock %}
+{% block body %}
+    <body class="mainimg">
+    <div class="container">
+        <!--目录菜单栏-->
+        <div class="top">
+            <h1 class="top_word1">———— 目标提取 ————</h1>
+            <hr style="height:1px;">
+        </div>
+
+        <!--功能介绍部分-->
+        <div class="introduce">
+            <h1>· 功能介绍:</h1>
+            <p>通过输入一张遥感图像，提取其中的目标。</p>
+        </div>
+        <img style="width:200px" src="data:;base64,{{ img_result }}">
+        <a href="data:;base64,{{ img_result }}" download="down.png">下载</a>
+        <h1>变化占比：</h1>
+        <p>{{ pro }}</p>
+        <!--功能实现部分-->
+        <div class="cd_predict"></div>
+    </div>
+    </body>
+{% endblock %}
+

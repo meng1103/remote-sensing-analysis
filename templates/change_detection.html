@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}
+    变化检测
+{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/change_detection.css') }}">
+{% endblock %}
+{% block body %}
+    <body class="mainimg">
+    <div class="container">
+        <!--目录菜单栏-->
+        <div class="top">
+            <h1 class="top_word1">———— 变化检测 ————</h1>
+            <hr style="height:1px;">
+        </div>
+
+        <!--功能介绍部分-->
+        <div class="introduce">
+            <h1>· 功能介绍:</h1>
+            <p>通过输入两张不同时间拍摄的相同位置（地理配准）的遥感图像，给出其中建筑变化的区域。</p>
+        </div>
+
+        <!--功能实现部分-->
+        <div class="cd_predict">
+            <form method="post" action="http://localhost:5000/change_detection_result" enctype="multipart/form-data">
+                <input type="file" value="输入第一时段图片" size="22" id="select_files"
+                       style="margin-left: 150px" name="input_image" onchange="show_selectedImage()"/>
+                <input type="file" value="输入第二时段图片" size="22" id="b_files"
+                       style="float: right" name="input_image_b" onchange="show()"/>
+                <br>
+                <canvas id="image_canvas" height="400" width="400" style="margin-top: 10px"></canvas>
+                <text name="image_className" value=""/>
+
+                <canvas id="image_b" height="400" width="400"
+                        style="float: right; margin-top: 10px"></canvas>
+                <text name="image_className_b" value=""/>
+                <br>
+                <input type="submit" class="button-new" value="提交图片" style="margin-top:15px;margin-left: 150px;"/>
+            </form>
+
+            <script type="text/javascript">
+                function show_selectedImage() {
+                    /// get select files.
+                    var selected_files = document.getElementById("select_files").files;
+                    for (var file of selected_files) {
+                        console.log(file.webkitRelativePath);
+                        /// read file content.
+                        var reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onloadend = function () {
+                            /// deal data.
+                            var img = new Image();
+                            /// after loader, result storage the file content result.
+                            img.src = this.result;
+                            img.onload = function () {
+                                var canvas = document.getElementById("image_canvas");
+                                var cxt = canvas.getContext('2d');
+                                cxt.drawImage(img, 0, 0,400,400);
+                            }
+                        }
+                    }
+                }
+
+                function show() {
+                    /// get select files.
+                    var selected_files = document.getElementById("b_files").files;
+                    for (var file of selected_files) {
+                        console.log(file.webkitRelativePath);
+                        /// read file content.
+                        var reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onloadend = function () {
+                            /// deal data.
+                            var img = new Image();
+                            /// after loader, result storage the file content result.
+                            img.src = this.result;
+                            img.onload = function () {
+                                var canvas = document.getElementById("image_b");
+                                var cxt = canvas.getContext('2d');
+                                cxt.drawImage(img, 0, 0,400,400);
+                            }
+                        }
+                    }
+                }
+            </script>
+        </div>
+    </div>
+    </body>
+{% endblock %}

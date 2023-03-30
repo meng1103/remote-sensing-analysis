@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}首页{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename ='css/front_page.css') }}">
+{% endblock %}
+{% block body %}
+    <body class="mainimg">
+    <div class="welcome">
+        <p>Hi,欢迎使用遥感图像分析系统</p>
+    </div>
+    </body>
+{% endblock %}

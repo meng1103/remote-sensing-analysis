@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/base.css">
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<!--头部分-->
+<div class="header">
+    <!--导航部分-->
+    <div class="nav">
+        <ul>
+            <li>
+                <p>遥感图像分析系统</p>
+            </li>
+            <li>
+                <a href="/">首页</a>
+            </li>
+            <li>
+                <a href="/target_extraction">目标提取</a>
+            </li>
+            <li>
+                <a href="/change_detection">变化检测</a>
+            </li>
+            <li>
+                <a href="/target_detection">目标检测</a>
+            </li>
+            <li>
+                <a href="/terrain_classification">地物分类</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% block body %}{% endblock %}
+{% block footer %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,13 @@
+.mainimg {
+    background: url("/static/images/background.jpg") no-repeat 0px 0px;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+.welcome > p {
+    font-size: 50px;
+    font-family: 华文行楷;
+    color: midnightblue;
+    text-align: center;
+    margin-top: 250px;
+}
